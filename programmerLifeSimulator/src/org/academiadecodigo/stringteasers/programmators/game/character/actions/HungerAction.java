@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
-public enum HungerActions {
+public enum HungerAction {
 
     APPLE(3, 0, 5, 2),
     TRASH(5, 0, -10, 0),
@@ -16,7 +16,7 @@ public enum HungerActions {
     private int health;
     private int money;
 
-    HungerActions(int eat, int sleep, int health, int money){
+    HungerAction(int eat, int sleep, int health, int money) {
 
         this.eat = eat;
         this.sleep = sleep;
@@ -26,3 +26,6 @@ public enum HungerActions {
     }
 
 }
+
+
+
