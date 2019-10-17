@@ -1,4 +1,4 @@
 package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
-public enum HungerActions {
+public enum HungerAction {
 }
