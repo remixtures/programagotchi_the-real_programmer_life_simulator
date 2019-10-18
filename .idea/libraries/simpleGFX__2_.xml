@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="simpleGFX (2)">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/programmerLifeSimulator/lib/simpleGFX.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
