@@ -40,17 +40,20 @@ public class testGFX  {
         sleep4.setColor(Color.BLUE);
         sleep4.fill();
 
-        Rectangle action1 =new Rectangle(40, 550, 40, 40);
+        Rectangle action1 =new Rectangle(57, 550, 40, 40);
         action1.draw();
 
-        Rectangle action2 =new Rectangle(120, 550, 40, 40);
+        Rectangle action2 =new Rectangle(137, 550, 40, 40);
         action2.draw();
 
-        Rectangle action3 =new Rectangle(200, 550, 40, 40);
+        Rectangle action3 =new Rectangle(217, 550, 40, 40);
         action3.draw();
 
-        Rectangle action4 =new Rectangle(280, 550, 40, 40);
+        Rectangle action4 =new Rectangle(297, 550, 40, 40);
         action4.draw();
+
+        Rectangle textBox = new Rectangle(40,200, 315, 340 );
+        textBox.draw();
 
 
         Thread.sleep(1000);
