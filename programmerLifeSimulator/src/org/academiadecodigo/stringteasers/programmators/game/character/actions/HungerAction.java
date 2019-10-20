@@ -25,4 +25,18 @@ public enum HungerAction {
 
     }
 
+    public int[] toArray (HungerAction action){
+
+        int[] values = new int[4];
+
+        values[0] = action.health;
+        values[1] = action.eat;
+        values[2] = action.sleep;
+        values[3] = action.money;
+
+        return values;
+
+
+    }
+
 }
