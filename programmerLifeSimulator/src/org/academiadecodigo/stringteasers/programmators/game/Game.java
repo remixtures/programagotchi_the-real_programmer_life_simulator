@@ -13,6 +13,7 @@ public class Game implements KeyboardHandler {
     private int menu;
 
     public void start() {
+
         init();
 
     }
@@ -66,7 +67,12 @@ public class Game implements KeyboardHandler {
                 KeyboardEvent.KEY_E,
                 KeyboardEvent.KEY_R,
                 KeyboardEvent.KEY_T,
-                KeyboardEvent.KEY_Y
+                KeyboardEvent.KEY_Y,
+                KeyboardEvent.KEY_1,
+                KeyboardEvent.KEY_2,
+                KeyboardEvent.KEY_3,
+                KeyboardEvent.KEY_4
+
         };
 
         KeyboardEvent[] keyboardEvents = new KeyboardEvent[keys.length];
@@ -80,6 +86,18 @@ public class Game implements KeyboardHandler {
 
     }
 
+    private void pressQ(){}
+    private void pressW(){}
+    private void pressE(){}
+    private void pressR(){}
+    private void pressT(){}
+    private void pressY(){}
+
+    private void press1(){}
+    private void press2(){}
+    private void press3(){}
+    private void press4(){}
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -87,22 +105,34 @@ public class Game implements KeyboardHandler {
         switch (keyboardEvent.getKey()){
 
             case KeyboardEvent.KEY_Q:
-
+                pressQ();
                 break;
             case KeyboardEvent.KEY_W:
-
+                pressW();
                 break;
             case KeyboardEvent.KEY_E:
-
+                pressE();
                 break;
             case KeyboardEvent.KEY_R:
-
+                pressR();
                 break;
             case KeyboardEvent.KEY_T:
-
+                pressT();
                 break;
             case KeyboardEvent.KEY_Y:
-
+                pressY();
+                break;
+            case KeyboardEvent.KEY_1:
+                press1();
+                break;
+            case KeyboardEvent.KEY_2:
+                press2();
+                break;
+            case KeyboardEvent.KEY_3:
+                press3();
+                break;
+            case KeyboardEvent.KEY_4:
+                press4();
                 break;
 
         }
