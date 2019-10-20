@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
-public enum HungerAction {
+public enum HungerAction{
 
     APPLE(3, 0, 5, 2),
     TRASH(5, 0, -10, 0),
@@ -35,7 +35,6 @@ public enum HungerAction {
         values[3] = action.money;
 
         return values;
-
 
     }
 

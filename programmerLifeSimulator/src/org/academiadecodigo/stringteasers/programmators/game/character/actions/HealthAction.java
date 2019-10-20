@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
-public enum HealthAction {
+public enum HealthAction{
 
     HOSPITAL(0, 0, 50, 50),
     GO_TO_GYM(-5, -10, 20, 20),

@@ -1,6 +1,6 @@
 package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
-public enum SleepActions {
+public enum SleepActions{
 
     UNDER_THE_BRIDGE(-5, 30, -10, 0),
     ON_THE_ACADEMY(-5, 30, 0, 0),
@@ -15,6 +15,7 @@ public enum SleepActions {
     private int sleep;
     private int health;
     private int money;
+
 
     SleepActions(int eat, int sleep, int health, int money){
 

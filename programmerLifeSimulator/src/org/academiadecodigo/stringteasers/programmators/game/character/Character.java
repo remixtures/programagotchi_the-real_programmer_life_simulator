@@ -46,26 +46,36 @@ public class Character {
         return sleep;
     }
 
-    public void actionEffects( Enum action) {
 
-        int[] effects = new int[5];
+    /**
+     * needs tinkering
+     * @param action
+     */
+    public void hungerEffects( HungerAction action) {
 
-        if(action instanceof HungerAction) {
-            effects = Actions.hungerAction((HungerAction) action);
+        switch(action) {
+
+            case TRASH:
+                return HungerAction.TRASH;
+
+            case SALAD:
+                return HungerAction.SALAD;
+
+            case APPLE:
+                return HungerAction.APPLE;
+
+            default:
+                return HungerAction.JUNKFOOD;
+
         }
 
-        if(action instanceof SleepActions) {
-            effects = Actions.sleepAction((SleepActions) action);
-        }
+    }
 
-        if(action instanceof HealthAction) {
-            effects = Actions.healthAction((HealthAction) action);
-        }
-
-        if(action instanceof WorkAction) {
-            effects = Actions.workActions((WorkAction) action);
-            effects[4] += work;
-        }
+    /**
+     * aux method to effects methods
+      * @param effects
+     */
+    public void addEffects(int[] effects){
 
         if(noMoney(effects[3])){
             return;
@@ -93,6 +103,9 @@ public class Character {
 
         if(health > 100) {
             health = 100;
+        }
+        if(health <= 0){
+            dead = false;
         }
         if (hunger > 100){
             hunger = 100;
@@ -127,8 +140,5 @@ public class Character {
             health -= 10;
         }
     }
-
-
-
 
 }
