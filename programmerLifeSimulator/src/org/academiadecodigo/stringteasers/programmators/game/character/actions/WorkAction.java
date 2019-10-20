@@ -25,20 +25,23 @@ public enum WorkAction {
 
     }
 
-    public int[] toArray (WorkAction action){
-
-        int[] values = new int[4];
-
-        values[0] = action.health;
-        values[1] = action.eat;
-        values[2] = action.sleep;
-        values[3] = action.money;
-        values[4] = action.work;
-
-        return values;
-
-
+    public int getWork() {
+        return work;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public int getEat() {
+        return eat;
+    }
+
+    public int getSleep() {
+        return sleep;
+    }
 }

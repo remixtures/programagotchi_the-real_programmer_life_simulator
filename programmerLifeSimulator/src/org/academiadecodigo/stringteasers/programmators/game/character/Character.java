@@ -25,6 +25,57 @@ public class Character {
 
     }
 
+    public void goWork(WorkAction workAction){
+
+        for (WorkAction action: WorkAction.values()) {
+
+            if (action.equals(workAction)){
+
+                money+=workAction.getMoney();
+                health+=workAction.getHealth();
+                hunger+=workAction.getEat();
+                sleep+=workAction.getSleep();
+                work+=workAction.getWork();
+            }
+
+        }
+    }
+
+    public void goSleep(SleepActions sleepActions){
+
+        for (SleepActions action: SleepActions.values()) {
+
+            if (action.equals(sleepActions)){
+
+                money+=sleepActions.getMoney();
+                health+=sleepActions.getHealth();
+                hunger+=sleepActions.getEat();
+                sleep+=sleepActions.getSleep();
+            }
+
+        }
+
+    }
+
+    public void goHealthy(HealthAction healthAction) {
+
+        for (HealthAction action: HealthAction.values()) {
+
+            if (action.equals(healthAction)){
+
+                health+=healthAction.getHealth();
+                money+=healthAction.getMoney();
+                hunger+=healthAction.getEat();
+                sleep+=healthAction.getSleep();
+            }
+
+        }
+
+    }
+
+    public void goEat(HungerAction eat) {
+    }
+
     public int getMoney() {
         return money;
     }
@@ -46,87 +97,8 @@ public class Character {
         return sleep;
     }
 
-    public void actionEffects( Enum action) {
-
-        int[] effects = new int[5];
-
-        if(action instanceof HungerAction) {
-            effects = Actions.hungerAction((HungerAction) action);
-        }
-
-        if(action instanceof SleepActions) {
-            effects = Actions.sleepAction((SleepActions) action);
-        }
-
-        if(action instanceof HealthAction) {
-            effects = Actions.healthAction((HealthAction) action);
-        }
-
-        if(action instanceof WorkAction) {
-            effects = Actions.workActions((WorkAction) action);
-            effects[4] += work;
-        }
-
-        if(noMoney(effects[3])){
-            return;
-        }
-
-        effects[0] += health;
-        effects[1] += hunger;
-        effects[2] += sleep;
-        effects[3] += money;
-        capped();
-        jobsDone();
-        hungerSleepDeprivation();
-
-    }
 
 
-    private Boolean noMoney(int money) {
-        if((money + this.money)<0){
-            return true;
-        }
-        return false;
-    }
-
-    private void capped() {
-
-        if(health > 100) {
-            health = 100;
-        }
-        if (hunger > 100){
-            hunger = 100;
-        }
-        if(hunger < 0){
-            hunger = 0;
-        }
-        if(sleep > 100){
-            sleep = 100;
-        }
-        if (sleep < 0){
-            sleep = 0;
-        }
-    }
-
-
-    private void jobsDone() {
-
-        if(work >= 100){
-            work = 0;
-            money = 25+((int)Math.random()*100);
-        }
-    }
-
-
-    private void hungerSleepDeprivation() {
-
-        if(hunger == 0){
-            health -= 10;
-        }
-        if(sleep == 0){
-            health -= 10;
-        }
-    }
 
 
 

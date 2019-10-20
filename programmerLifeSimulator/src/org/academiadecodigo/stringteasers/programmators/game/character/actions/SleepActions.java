@@ -24,18 +24,22 @@ public enum SleepActions {
         this.money = money;
 
     }
-    public int[] toArray (SleepActions action){
-
-        int[] values = new int[4];
-
-        values[0] = action.health;
-        values[1] = action.eat;
-        values[2] = action.sleep;
-        values[3] = action.money;
-
-        return values;
 
 
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getEat() {
+        return eat;
+    }
+
+    public int getSleep() {
+        return sleep;
     }
 
 }

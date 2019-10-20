@@ -25,18 +25,20 @@ public enum HungerAction {
 
     }
 
-    public int[] toArray (HungerAction action){
+    public int getHealth() {
+        return health;
+    }
 
-        int[] values = new int[4];
+    public int getMoney() {
+        return money;
+    }
 
-        values[0] = action.health;
-        values[1] = action.eat;
-        values[2] = action.sleep;
-        values[3] = action.money;
+    public int getEat() {
+        return eat;
+    }
 
-        return values;
-
-
+    public int getSleep() {
+        return sleep;
     }
 
 }
