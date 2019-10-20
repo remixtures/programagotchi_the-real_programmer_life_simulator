@@ -29,12 +29,10 @@ public class Actions {
     }
 
 
-    public void action(HungerAction action) {
-
-        int[] values = hungerAction(action);
 
 
 
 
-    }
+
+
 }

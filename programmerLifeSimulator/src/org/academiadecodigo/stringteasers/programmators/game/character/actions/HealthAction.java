@@ -2,10 +2,10 @@ package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
 public enum HealthAction {
 
-    HOSPITAL(0, 0, 15, 50),
-    GOTOGYM(0, 0, 10, 30),
-    WALK(0, 0, 5, 0),
-    RUN(0, 0, 8, 0);
+    HOSPITAL(0, 0, 50, 50),
+    GO_TO_GYM(-5, -10, 20, 20),
+    WALK(-5, -5, 5, 0),
+    RUN(-5, -10, 10, 0);
 
 
     private int eat;
@@ -22,7 +22,19 @@ public enum HealthAction {
 
     }
 
+    public int[] toArray (HealthAction action){
 
+        int[] values = new int[4];
+
+        values[0] = action.health;
+        values[1] = action.eat;
+        values[2] = action.sleep;
+        values[3] = action.money;
+
+        return values;
+
+
+    }
 
 
 
