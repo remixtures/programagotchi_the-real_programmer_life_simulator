@@ -2,6 +2,7 @@ package org.academiadecodigo.stringteasers.programmators.game;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
@@ -11,9 +12,15 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Game implements KeyboardHandler {
 
     private int menu;
+    private Boolean isMenuUp;
+    private Keyboard key;
+
 
     public void start() {
-        init();
+
+         key = new Keyboard(this);
+         init();
+
 
     }
 
@@ -22,10 +29,10 @@ public class Game implements KeyboardHandler {
         Picture background = new Picture(0 ,0 , "resources/programmatorSimulator.png");
         background.draw();
 
-        Rectangle healthBar = new Rectangle(27 , 100 , 14 , 20);
+        Rectangle healthBar = new Rectangle(27 , 100 , 320 , 20);
         Rectangle foodBar = new Rectangle(27 , 130 , 320 , 20);
         Rectangle sleepBar = new Rectangle(27 , 160 , 320 , 20);
-        Rectangle workBar = new Rectangle(27 , 190 , 50 , 20);
+        Rectangle workBar = new Rectangle(27 , 190 , 0 , 20);
 
         Text healthText = new Text(30,102, "Health");
         Text foodText = new Text(30, 132, "Hunger");
@@ -76,9 +83,12 @@ public class Game implements KeyboardHandler {
             keyboardEvents[i] = new KeyboardEvent();
             keyboardEvents[i].setKey(keys[i]);
             keyboardEvents[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            key.addEventListener(keyboardEvents[i]);
         }
 
     }
+
+
 
 
     @Override
@@ -87,7 +97,7 @@ public class Game implements KeyboardHandler {
         switch (keyboardEvent.getKey()){
 
             case KeyboardEvent.KEY_Q:
-
+                GameLogic.HealthMenu();
                 break;
             case KeyboardEvent.KEY_W:
 

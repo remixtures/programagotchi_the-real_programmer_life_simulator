@@ -38,4 +38,24 @@ public enum HealthAction {
         return sleep;
     }
 
+
+    @Override
+    public String toString() {
+
+        switch (this) {
+
+            case HOSPITAL:
+                return "1. Go To Hospital";
+
+            case GO_TO_GYM:
+                return  "2. Go to Gym.";
+
+            case WALK:
+                return "3. Take a refreshing walk.";
+
+            default:
+                return "4. Go for a run.";
+
+        }
+    }
 }
