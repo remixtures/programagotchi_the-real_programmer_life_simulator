@@ -108,24 +108,6 @@ public class Game implements KeyboardHandler {
             case KeyboardEvent.KEY_Q:
                 GameLogic.HealthMenu();
                 break;
-            case KeyboardEvent.KEY_W:
-                pressW();
-                break;
-            case KeyboardEvent.KEY_E:
-                pressE();
-                break;
-            case KeyboardEvent.KEY_R:
-                pressR();
-                break;
-            case KeyboardEvent.KEY_T:
-                pressT();
-                break;
-            case KeyboardEvent.KEY_Y:
-                pressY();
-                break;
-            case KeyboardEvent.KEY_1:
-                press1();
-                break;
             case KeyboardEvent.KEY_2:
                 press2();
                 break;
