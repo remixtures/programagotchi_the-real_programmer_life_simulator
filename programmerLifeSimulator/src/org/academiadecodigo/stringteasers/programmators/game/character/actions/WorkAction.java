@@ -2,7 +2,7 @@ package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
 public enum WorkAction {
 
-    BEG(0, -5, -10, 20, 0),
+    BEG(0, -5, -10, 5, 0),
     LIGHT_PROGRAMMING(-10 , -20, 0, 10, 20),
     WORKDAY(-20 , -40, 0, 20, 40),
     OVERTIME(-40, -80, 0, 30, 70),

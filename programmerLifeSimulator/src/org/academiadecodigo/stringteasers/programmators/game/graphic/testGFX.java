@@ -10,10 +10,10 @@ public class testGFX  {
 
     public static void main(String[] args) throws Exception{
 
-        //Rectangle rectangle = new Rectangle(10, 10, 375, 600);
-
-        /*Picture background = new Picture(0 ,0 , "resources/programmatorSimulator.png");
-        background.draw();
+        Rectangle rectangle = new Rectangle(10, 10, 375, 600);
+        rectangle.draw();
+        //Picture background = new Picture(0 ,0 , "resources/programmatorSimulator.png");
+        //background.draw();
 
         Rectangle healthBar = new Rectangle(27 , 100 , 14 , 20);
         Rectangle foodBar = new Rectangle(27 , 130 , 320 , 20);
@@ -101,7 +101,7 @@ public class testGFX  {
         reduce(-40,sleep4);
 
         Thread.sleep(1000);
-       increase(40, sleep4);*/
+       increase(40, sleep4);
     }
 
 
