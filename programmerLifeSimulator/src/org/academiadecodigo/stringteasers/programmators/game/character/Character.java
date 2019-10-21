@@ -21,20 +21,22 @@ public class Character {
         hunger = 100;
         sleep = 100;
         work = 0;
+
         dead = false;
 
     }
 
     public void goWork(WorkAction workAction){
 
+        if (workAction != WorkAction.BEG){
+
+        }
+
         for (WorkAction action: WorkAction.values()) {
 
             if (action.equals(workAction)){
 
-                money+=workAction.getMoney();
-                health+=workAction.getHealth();
-                hunger+=workAction.getEat();
-                sleep+=workAction.getSleep();
+                setValues( workAction.getHealth() , workAction.getMoney() , workAction.getEat(), workAction.getSleep() );
                 work+=workAction.getWork();
             }
 
@@ -47,10 +49,7 @@ public class Character {
 
             if (action.equals(sleepActions)){
 
-                money+=sleepActions.getMoney();
-                health+=sleepActions.getHealth();
-                hunger+=sleepActions.getEat();
-                sleep+=sleepActions.getSleep();
+                setValues( sleepActions.getHealth() , sleepActions.getMoney() , sleepActions.getEat(),sleepActions.getSleep() );
             }
 
         }
@@ -63,10 +62,8 @@ public class Character {
 
             if (action.equals(healthAction)){
 
-                health+=healthAction.getHealth();
-                money+=healthAction.getMoney();
-                hunger+=healthAction.getEat();
-                sleep+=healthAction.getSleep();
+                setValues( healthAction.getHealth() , healthAction.getMoney() , healthAction.getEat(),healthAction.getSleep() );
+
             }
 
         }
@@ -74,7 +71,30 @@ public class Character {
     }
 
     public void goEat(HungerAction eat) {
+
+        for (HealthAction action: HealthAction.values()) {
+
+            if (action.equals(eat)){
+
+                setValues( eat.getHealth() , eat.getMoney() , eat.getEat(), eat.getSleep() );
+
+            }
+
+        }
+
+
     }
+
+    private void setValues(int health , int sleep , int hunger , int money){
+
+        this.health += health;
+        this.sleep += sleep;
+        this.hunger += hunger;
+        this.money += money;
+    }
+
+
+
 
     public int getMoney() {
         return money;
@@ -92,15 +112,14 @@ public class Character {
         return work;
     }
 
-    public int getSleep() {
+    public boolean isDead() {
+        return dead;
+    }
 
+    public int getSleep() {
         return sleep;
     }
 
 
-
-
-
-
-
 }
+
