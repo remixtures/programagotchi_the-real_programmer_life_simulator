@@ -42,4 +42,26 @@ public enum SleepActions {
         return sleep;
     }
 
+    @Override
+    public String toString() {
+
+        switch (this) {
+
+            case UNDER_THE_BRIDGE:
+                return "1. Spend the night under a bridge.";
+
+            case IN_MY_ROOM:
+                return "3. Sleep in your bed at home.";
+
+            case HOSTEL:
+                return "4. Stay at a hostel.";
+
+            case HOTEL:
+                return "5. Stay at a hotel.";
+
+            default:
+                return "2. Take a nap in the academy.";
+
+        }
+    }
 }
