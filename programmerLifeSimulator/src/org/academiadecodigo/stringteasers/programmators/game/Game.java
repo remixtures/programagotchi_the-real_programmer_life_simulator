@@ -2,18 +2,22 @@ package org.academiadecodigo.stringteasers.programmators.game;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.stringteasers.programmators.game.character.actions.HealthAction;
 
 public class Game implements KeyboardHandler {
 
     private int menu;
+    private Keyboard gameKeyboard;
+
 
     public void start() {
-
+        gameKeyboard = new Keyboard(this);
         init();
 
     }
@@ -82,6 +86,7 @@ public class Game implements KeyboardHandler {
             keyboardEvents[i] = new KeyboardEvent();
             keyboardEvents[i].setKey(keys[i]);
             keyboardEvents[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            gameKeyboard.addEventListener(keyboardEvents[i]);
         }
 
     }
@@ -93,7 +98,20 @@ public class Game implements KeyboardHandler {
     private void pressT(){}
     private void pressY(){}
 
-    private void press1(){}
+    private void press1(){
+
+        for (int i = 0; i < HealthAction.values().length; i++) {
+
+            int y = 260;
+
+            int padding = 20;
+
+            Text healthText = new Text(50, y + padding * i, HealthAction.values()[i].toString());
+            healthText.setColor(Color.BLACK);
+            healthText.draw();
+        }
+
+    }
     private void press2(){}
     private void press3(){}
     private void press4(){}
