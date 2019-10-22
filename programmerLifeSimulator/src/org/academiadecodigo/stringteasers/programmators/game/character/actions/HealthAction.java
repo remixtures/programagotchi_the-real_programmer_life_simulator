@@ -2,8 +2,8 @@ package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
 public enum HealthAction{
 
-    HOSPITAL(0, 0, 50, 50),
-    GO_TO_GYM(-5, -10, 20, 20),
+    HOSPITAL(0, 0, 50, -50),
+    GO_TO_GYM(-5, -10, 20, -20),
     WALK(-5, -5, 5, 0),
     RUN(-5, -10, 10, 0);
 
@@ -22,20 +22,40 @@ public enum HealthAction{
 
     }
 
-    public int[] toArray (HealthAction action){
+    public int getHealth() {
+        return health;
+    }
 
-        int[] values = new int[4];
+    public int getMoney() {
+        return money;
+    }
 
-        values[0] = action.health;
-        values[1] = action.eat;
-        values[2] = action.sleep;
-        values[3] = action.money;
+    public int getEat() {
+        return eat;
+    }
 
-        return values;
-
-
+    public int getSleep() {
+        return sleep;
     }
 
 
+    @Override
+    public String toString() {
 
+        switch (this) {
+
+            case HOSPITAL:
+                return "1. Go To Hospital";
+
+            case GO_TO_GYM:
+                return  "2. Go to Gym.";
+
+            case WALK:
+                return "3. Take a refreshing walk.";
+
+            default:
+                return "4. Go for a run.";
+
+        }
+    }
 }

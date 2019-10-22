@@ -2,13 +2,12 @@ package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
 public enum HungerAction{
 
-    APPLE(3, 0, 5, 2),
+    APPLE(3, 0, 5, -2),
     TRASH(5, 0, -10, 0),
-    JUNKFOOD(10, 0, -5, 5),
-    SALAD(8, 0, 10, 7),
-    RESTAURANT(15, 0, 5, 15),
-    COFFEE(0, 5, -4, 3),
-    SLEEPPILL(0, 15, -10, 20);
+    JUNKFOOD(10, 0, -5, -5),
+    RESTAURANT(15, 0, 5, -15),
+    COFFEE(0, 5, -4, -3);
+
 
 
     private int eat;
@@ -25,17 +24,45 @@ public enum HungerAction{
 
     }
 
-    public int[] toArray (HungerAction action){
-
-        int[] values = new int[4];
-
-        values[0] = action.health;
-        values[1] = action.eat;
-        values[2] = action.sleep;
-        values[3] = action.money;
-
-        return values;
-
+    public int getHealth() {
+        return health;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public int getEat() {
+        return eat;
+    }
+
+    public int getSleep() {
+        return sleep;
+    }
+
+    @Override
+    public String toString() {
+
+        switch (this) {
+
+            case APPLE:
+                return "1. Eat an apple.";
+
+            case TRASH:
+                return "2. Pick food from the trash can.";
+
+
+            case JUNKFOOD:
+                return "3. Go out to eat at a junk food outlet";
+
+            case RESTAURANT:
+                return "4. Go out to eat at a restaurant.";
+
+            default:
+                return "5. Drink a cup of coffee.";
+
+
+        }
+
+    }
 }

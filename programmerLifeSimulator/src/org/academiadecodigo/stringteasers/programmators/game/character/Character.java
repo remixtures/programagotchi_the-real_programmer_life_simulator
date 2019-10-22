@@ -21,9 +21,87 @@ public class Character {
         hunger = 100;
         sleep = 100;
         work = 0;
+
         dead = false;
 
     }
+
+    public void goWork(WorkAction workAction){
+
+        for (WorkAction action: WorkAction.values()) {
+
+            if (action.equals(workAction)){
+
+                setValues( workAction.getHealth() , workAction.getSleep() , workAction.getEat(), workAction.getMoney() , workAction.getWork());
+
+            }
+
+        }
+        isDead();
+    }
+
+
+    public void goSleep(SleepActions sleepActions){
+
+        for (SleepActions action: SleepActions.values()) {
+
+            if (action.equals(sleepActions)){
+
+                setValues( sleepActions.getHealth() ,sleepActions.getSleep() , sleepActions.getEat(), sleepActions.getMoney(), 0);
+            }
+
+        }
+        isDead();
+
+    }
+
+    public void goHealthy(HealthAction healthAction) {
+
+
+        for (HealthAction action: HealthAction.values()) {
+
+            if (action.equals(healthAction)){
+
+                setValues( healthAction.getHealth() , healthAction.getMoney() , healthAction.getEat(),healthAction.getSleep() , 0 );
+
+            }
+
+        }
+        isDead();
+
+    }
+
+    public void goEat(HungerAction eat) {
+
+        for (HungerAction action: HungerAction.values()) {
+
+            if (action.equals(eat)){
+
+                setValues( eat.getHealth() ,eat.getSleep()  , eat.getEat(), eat.getMoney() , 0 );
+
+            }
+        }
+        isDead();
+    }
+
+
+    private void setValues(int health , int sleep , int hunger , int money, int work){
+        if (isDead()){
+            return;
+        }
+        this.health = (this.health+health) > 100 ? 100 : this.health+health;
+        this.sleep = (this.sleep+sleep) > 100 ? 100 : this.sleep+sleep;
+        this.hunger = (this.hunger+hunger) > 100 ? 100 : this.hunger+hunger;
+        this.money += money;
+        this.work = (this.work+work) >= 100 ?  0 : this.work+work;
+        if(work != 0 && this.work == 0){
+            this.money += 100;
+        }
+        isDead();
+    }
+
+
+
 
     public int getMoney() {
         return money;
@@ -41,104 +119,17 @@ public class Character {
         return work;
     }
 
-    public int getSleep() {
+    public boolean isDead() {
+        if (health <= 0){
+            dead = true;
+        }
+        return dead;
+    }
 
+
+    public int getSleep() {
         return sleep;
     }
 
-
-    /**
-     * needs tinkering
-     * @param action
-     */
-    public void hungerEffects( HungerAction action) {
-
-        switch(action) {
-
-            case TRASH:
-                return HungerAction.TRASH;
-
-            case SALAD:
-                return HungerAction.SALAD;
-
-            case APPLE:
-                return HungerAction.APPLE;
-
-            default:
-                return HungerAction.JUNKFOOD;
-
-        }
-
-    }
-
-    /**
-     * aux method to effects methods
-      * @param effects
-     */
-    public void addEffects(int[] effects){
-
-        if(noMoney(effects[3])){
-            return;
-        }
-
-        effects[0] += health;
-        effects[1] += hunger;
-        effects[2] += sleep;
-        effects[3] += money;
-        capped();
-        jobsDone();
-        hungerSleepDeprivation();
-
-    }
-
-
-    private Boolean noMoney(int money) {
-        if((money + this.money)<0){
-            return true;
-        }
-        return false;
-    }
-
-    private void capped() {
-
-        if(health > 100) {
-            health = 100;
-        }
-        if(health <= 0){
-            dead = false;
-        }
-        if (hunger > 100){
-            hunger = 100;
-        }
-        if(hunger < 0){
-            hunger = 0;
-        }
-        if(sleep > 100){
-            sleep = 100;
-        }
-        if (sleep < 0){
-            sleep = 0;
-        }
-    }
-
-
-    private void jobsDone() {
-
-        if(work >= 100){
-            work = 0;
-            money = 25+((int)Math.random()*100);
-        }
-    }
-
-
-    private void hungerSleepDeprivation() {
-
-        if(hunger == 0){
-            health -= 10;
-        }
-        if(sleep == 0){
-            health -= 10;
-        }
-    }
-
 }
+
