@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.stringteasers.programmators.game.character.Character;
 
 public class Game implements KeyboardHandler {
 
@@ -15,7 +16,18 @@ public class Game implements KeyboardHandler {
 
     private Boolean isMenuUp;
     private Keyboard key;
+    private GameLogic gameLogic;
+    private Character character;
+    private Rectangle healthBar;
+    private Rectangle foodBar;
+    private Rectangle sleepBar;
+    private Rectangle workBar;
 
+
+    public Game(){
+        character = new Character();
+        gameLogic = new GameLogic(character);
+    }
 
     public void start() {
 
@@ -30,10 +42,10 @@ public class Game implements KeyboardHandler {
         Picture background = new Picture(0 ,0 , "resources/programmatorSimulator.png");
         background.draw();
 
-        Rectangle healthBar = new Rectangle(27 , 100 , 320 , 20);
-        Rectangle foodBar = new Rectangle(27 , 130 , 320 , 20);
-        Rectangle sleepBar = new Rectangle(27 , 160 , 320 , 20);
-        Rectangle workBar = new Rectangle(27 , 190 , 0 , 20);
+        healthBar = new Rectangle(27 , 100 , 320 , 20);
+        foodBar = new Rectangle(27 , 130 , 320 , 20);
+        sleepBar = new Rectangle(27 , 160 , 320 , 20);
+        workBar = new Rectangle(27 , 190 , 0 , 20);
 
         Text healthText = new Text(30,102, "Health");
         Text foodText = new Text(30, 132, "Hunger");
@@ -73,13 +85,12 @@ public class Game implements KeyboardHandler {
                 KeyboardEvent.KEY_W,
                 KeyboardEvent.KEY_E,
                 KeyboardEvent.KEY_R,
-                KeyboardEvent.KEY_T,
-                KeyboardEvent.KEY_Y,
                 KeyboardEvent.KEY_1,
                 KeyboardEvent.KEY_2,
                 KeyboardEvent.KEY_3,
-                KeyboardEvent.KEY_4
-
+                KeyboardEvent.KEY_4,
+                KeyboardEvent.KEY_5,
+                KeyboardEvent.KEY_6,
         };
 
         KeyboardEvent[] keyboardEvents = new KeyboardEvent[keys.length];
@@ -104,23 +115,76 @@ public class Game implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
+
         switch (keyboardEvent.getKey()){
 
             case KeyboardEvent.KEY_Q:
-                GameLogic.HealthMenu();
+                gameLogic.HealthMenu();
+                break;
+            case KeyboardEvent.KEY_W:
+                gameLogic.hungerMenu();
+                break;
+            case KeyboardEvent.KEY_E:
+                gameLogic.sleepMenu();
+                break;
+            case KeyboardEvent.KEY_R:
+                gameLogic.workMenu();
+                break;
+            case KeyboardEvent.KEY_1:
+                gameLogic.whichMenu(1);
+                meterUpdate();
                 break;
             case KeyboardEvent.KEY_2:
-                press2();
+                gameLogic.whichMenu(2);
+                meterUpdate();
                 break;
             case KeyboardEvent.KEY_3:
-                press3();
+                gameLogic.whichMenu(3);
+                meterUpdate();
                 break;
             case KeyboardEvent.KEY_4:
-                press4();
+                gameLogic.whichMenu(4);
+                meterUpdate();
                 break;
+            case KeyboardEvent.KEY_5:
+                gameLogic.whichMenu(5);
+                meterUpdate();
+                break;
+            case KeyboardEvent.KEY_6:
+                gameLogic.whichMenu(6);
+                meterUpdate();
+                break;
+        }
+
+
+
+    }
+
+    private void meterUpdate(){
+        double pixel = 3.2;
+        System.out.println("qwertyuiop");
+        if(healthBar.getWidth() > (character.getHealth()*pixel)){
+            reduce((healthBar.getWidth()-(character.getHealth()*pixel)), healthBar);
+
+        }else if(healthBar.getWidth() < (character.getHealth()*pixel)){
+            increase(((character.getHealth()*pixel)-healthBar.getWidth()), healthBar);
 
         }
 
+
+    }
+
+    private static void reduce(double x, Rectangle u) {
+        int rectX = u.getX();
+        u.grow(-x,0);
+        u.translate(rectX - u.getX(),0);
+
+    }
+
+    private static void increase(double x, Rectangle u) {
+        int rectX = u.getX();
+        u.grow(x,0);
+        u.translate(rectX - u.getX(),0);
     }
 
     @Override

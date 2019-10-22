@@ -41,5 +41,33 @@ public enum HungerAction {
         return sleep;
     }
 
+    @Override
+    public String toString() {
 
+        switch (this) {
+
+            case APPLE:
+                return "1. Eat an apple.";
+
+            case TRASH:
+                return "2. Pick food from the trash can.";
+
+            case JUNKFOOD:
+                return "3. Go out to eat at a junk food outlet";
+
+            case SALAD:
+                return "4. Eat a salad.";
+
+            case RESTAURANT:
+                return "5. Go out to eat at a restaurant.";
+
+            case COFFEE:
+                return "6. Drink a cup of coffee.";
+
+            default:
+                return "7. Take a sleeping pill.";
+
+        }
+
+    }
 }

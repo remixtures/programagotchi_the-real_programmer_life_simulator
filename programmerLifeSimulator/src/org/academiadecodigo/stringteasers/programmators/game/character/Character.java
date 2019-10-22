@@ -16,7 +16,7 @@ public class Character {
 
     public Character() {
 
-        money = 50;
+        money = 10;
         health = 100;
         hunger = 100;
         sleep = 100;
@@ -28,15 +28,11 @@ public class Character {
 
     public void goWork(WorkAction workAction){
 
-        if (workAction != WorkAction.BEG){
-
-        }
-
         for (WorkAction action: WorkAction.values()) {
 
             if (action.equals(workAction)){
 
-                setValues( workAction.getHealth() , workAction.getMoney() , workAction.getEat(), workAction.getSleep() );
+                setValues( workAction.getHealth() , workAction.getSleep() , workAction.getEat(), workAction.getMoney() );
                 work+=workAction.getWork();
             }
 
@@ -49,7 +45,7 @@ public class Character {
 
             if (action.equals(sleepActions)){
 
-                setValues( sleepActions.getHealth() , sleepActions.getMoney() , sleepActions.getEat(),sleepActions.getSleep() );
+                setValues( sleepActions.getHealth() ,sleepActions.getSleep() , sleepActions.getEat(), sleepActions.getMoney());
             }
 
         }
@@ -67,20 +63,22 @@ public class Character {
             }
 
         }
+        isDead();
 
     }
 
     public void goEat(HungerAction eat) {
 
-        for (HealthAction action: HealthAction.values()) {
+        for (HungerAction action: HungerAction.values()) {
 
             if (action.equals(eat)){
 
-                setValues( eat.getHealth() , eat.getMoney() , eat.getEat(), eat.getSleep() );
+                setValues( eat.getHealth() ,eat.getSleep()  , eat.getEat(), eat.getMoney() );
 
             }
 
         }
+        isDead();
 
 
     }
@@ -113,6 +111,9 @@ public class Character {
     }
 
     public boolean isDead() {
+        if (health <= 0){
+            dead = true;
+        }
         return dead;
     }
 
