@@ -13,7 +13,7 @@ public class GameLogic {
     private static int x;
     private static int add;
     private static Text[] actions;
-    private static int currentMenu;
+    public static int currentMenu;
     private Character character;
 
     public GameLogic(Character character){

@@ -12,15 +12,15 @@ import org.academiadecodigo.stringteasers.programmators.game.character.Character
 
 public class Game implements KeyboardHandler {
 
-    private int menu;
-    private Boolean isMenuUp;
+
     private Keyboard key;
     private GameLogic gameLogic;
     private Character character;
-    private Rectangle healthBar;
-    private Rectangle foodBar;
-    private Rectangle sleepBar;
-    private Rectangle workBar;
+    Text moneyText;
+
+    Rectangle[] bars = new Rectangle[4];
+    Text[] barText = new Text[4];
+
 
 
     public Game(){
@@ -41,36 +41,41 @@ public class Game implements KeyboardHandler {
         Picture background = new Picture(0 ,0 , "resources/programmatorSimulator.png");
         background.draw();
 
-        healthBar = new Rectangle(27 , 100 , 320 , 20);
-        foodBar = new Rectangle(27 , 130 , 320 , 20);
-        sleepBar = new Rectangle(27 , 160 , 320 , 20);
-        workBar = new Rectangle(27 , 190 , 0 , 20);
+        bars[0] = new Rectangle(27 , 100 , 320 , 20);
+        bars[1] = new Rectangle(27 , 130 , 320 , 20);
+        bars[2] = new Rectangle(27 , 160 , 320 , 20);
+        bars[3] = new Rectangle(27 , 190 , 0 , 20);
 
-        Text healthText = new Text(30,102, "Health");
-        Text foodText = new Text(30, 132, "Hunger");
-        Text sleepText = new Text(30,162, "Sleep");
-        Text workText = new Text(30, 192, "Work");
+        barText[0] = new Text(30,102, "Health");
+        barText[1] = new Text(30, 132, "Hunger");
+        barText[2] = new Text(30,162, "Sleep");
+        barText[3] = new Text(30, 192, "Work");
 
-        healthBar.setColor(Color.BLUE);
-        foodBar.setColor(Color.BLUE);
-        sleepBar.setColor(Color.BLUE);
-        workBar.setColor(Color.BLUE);
+        moneyText = new Text(70, 78, String.valueOf(character.getMoney()));
+        moneyText.grow(8,8);
 
-        healthText.setColor(Color.WHITE);
-        foodText.setColor(Color.WHITE);
-        sleepText.setColor(Color.WHITE);
-        workText.setColor(Color.WHITE);
+        bars[0].setColor(Color.BLUE);
+        bars[1].setColor(Color.BLUE);
+        bars[2].setColor(Color.BLUE);
+        bars[3].setColor(Color.BLUE);
+
+        barText[0].setColor(Color.WHITE);
+        barText[1].setColor(Color.WHITE);
+        barText[2].setColor(Color.WHITE);
+        barText[3].setColor(Color.WHITE);
 
 
-        healthBar.fill();
-        foodBar.fill();
-        sleepBar.fill();
-        workBar.fill();
 
-        healthText.draw();
-        foodText.draw();
-        sleepText.draw();
-        workText.draw();
+        bars[0].fill();
+        bars[1].fill();
+        bars[2].fill();
+        bars[3].fill();
+
+        barText[0].draw();
+        barText[1].draw();
+        barText[2].draw();
+        barText[3].draw();
+        moneyText.draw();
 
         keyboardInit();
     }
@@ -110,6 +115,11 @@ public class Game implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
+        if (character.isDead()){
+            Picture deadPic = new Picture(0,0,"resources/programmatorSimulator.png");
+            deadPic.draw();
+            return;
+        }
 
         switch (keyboardEvent.getKey()){
 
@@ -155,32 +165,72 @@ public class Game implements KeyboardHandler {
 
     }
 
-    private void meterUpdate(){
+
+    private void meterUpdate() {
+
         double pixel = 3.2;
-        System.out.println("qwertyuiop");
-        if(healthBar.getWidth() > (character.getHealth()*pixel)){
-            reduce((healthBar.getWidth()-(character.getHealth()*pixel)), healthBar);
 
-        }else if(healthBar.getWidth() < (character.getHealth()*pixel)){
-            increase(((character.getHealth()*pixel)-healthBar.getWidth()), healthBar);
+        //System.out.println("before: " + healthBar.getWidth() + "   " + character.getHealth() * pixel);
 
+        for (int i = 0; i < bars.length; i++) {
+            if (bars[i].getWidth() != (type(i) * 3.2)) {
+
+                double a = bars[i].getY();
+                double t = barText[i].getY();
+                System.out.println(a);
+                bars[i].delete();
+                bars[i] = new Rectangle(27, a, type(i)* pixel, 20);
+                bars[i].setColor(Color.BLUE);
+                bars[i].fill();
+                barText[i] = new Text(30, t, stringtype(i));
+                barText[i].setColor(Color.WHITE);
+                barText[i].draw();
+
+            }
+        }
+        moneyText.delete();
+        moneyText = new Text(70, 78, String.valueOf(character.getMoney()));
+        moneyText.grow(8,8);
+        moneyText.draw();
+    }
+
+
+    private String stringtype(int type) {
+
+        switch (type) {
+            case 0:
+                return "Health";
+
+            case 1:
+                return "Hunger";
+
+            case 2:
+                return "Sleep";
+
+            default:
+                return "Work";
         }
 
+    }
+    private int type(int type) {
+
+        switch (type) {
+            case 0:
+                return character.getHealth();
+
+            case 1:
+                return character.getHunger();
+
+            case 2:
+                return character.getSleep();
+
+            default:
+                return character.getWork();
+        }
 
     }
 
-    private static void reduce(double x, Rectangle u) {
-        int rectX = u.getX();
-        u.grow(-x,0);
-        u.translate(rectX - u.getX(),0);
 
-    }
-
-    private static void increase(double x, Rectangle u) {
-        int rectX = u.getX();
-        u.grow(x,0);
-        u.translate(rectX - u.getX(),0);
-    }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {

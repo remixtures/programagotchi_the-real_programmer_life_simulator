@@ -5,8 +5,8 @@ public enum SleepActions {
     UNDER_THE_BRIDGE(-5, 30, -10, 0),
     ON_THE_ACADEMY(-5, 30, 0, 0),
     IN_MY_ROOM(-5, 50, 5 , 0),
-    HOSTEL(-5, 70, 5, 30),
-    HOTEL(0, 70, 10, 50);
+    HOSTEL(-5, 70, 5, -30),
+    HOTEL(0, 70, 10, -50);
 
 
 

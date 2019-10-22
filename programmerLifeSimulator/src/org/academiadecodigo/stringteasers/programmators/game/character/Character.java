@@ -16,7 +16,7 @@ public class Character {
 
     public Character() {
 
-        money = 10;
+        money = 50;
         health = 100;
         hunger = 100;
         sleep = 100;
@@ -32,8 +32,8 @@ public class Character {
 
             if (action.equals(workAction)){
 
-                setValues( workAction.getHealth() , workAction.getSleep() , workAction.getEat(), workAction.getMoney() );
-                work+=workAction.getWork();
+                setValues( workAction.getHealth() , workAction.getSleep() , workAction.getEat(), workAction.getMoney() , workAction.getWork());
+
             }
 
         }
@@ -45,7 +45,7 @@ public class Character {
 
             if (action.equals(sleepActions)){
 
-                setValues( sleepActions.getHealth() ,sleepActions.getSleep() , sleepActions.getEat(), sleepActions.getMoney());
+                setValues( sleepActions.getHealth() ,sleepActions.getSleep() , sleepActions.getEat(), sleepActions.getMoney(), 0);
             }
 
         }
@@ -58,7 +58,7 @@ public class Character {
 
             if (action.equals(healthAction)){
 
-                setValues( healthAction.getHealth() , healthAction.getMoney() , healthAction.getEat(),healthAction.getSleep() );
+                setValues( healthAction.getHealth() , healthAction.getMoney() , healthAction.getEat(),healthAction.getSleep() , 0 );
 
             }
 
@@ -73,7 +73,7 @@ public class Character {
 
             if (action.equals(eat)){
 
-                setValues( eat.getHealth() ,eat.getSleep()  , eat.getEat(), eat.getMoney() );
+                setValues( eat.getHealth() ,eat.getSleep()  , eat.getEat(), eat.getMoney() , 0 );
 
             }
 
@@ -83,12 +83,19 @@ public class Character {
 
     }
 
-    private void setValues(int health , int sleep , int hunger , int money){
-
-        this.health += health;
-        this.sleep += sleep;
-        this.hunger += hunger;
+    private void setValues(int health , int sleep , int hunger , int money, int work){
+        if (isDead()){
+            return;
+        }
+        this.health = (this.health+health) > 100 ? 100 : this.health+health;
+        this.sleep = (this.sleep+sleep) > 100 ? 100 : this.sleep+sleep;
+        this.hunger = (this.hunger+hunger) > 100 ? 100 : this.hunger+hunger;
         this.money += money;
+        this.work = (this.work+work) >= 100 ?  0 : this.work+work;
+        if(work != 0 && this.work == 0){
+            this.money += 100;
+        }
+        isDead();
     }
 
 

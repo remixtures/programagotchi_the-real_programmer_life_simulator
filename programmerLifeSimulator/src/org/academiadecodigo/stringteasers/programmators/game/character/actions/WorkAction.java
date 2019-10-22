@@ -51,13 +51,13 @@ public enum WorkAction {
         switch (this) {
 
             case BEG:
-                return "1. Ask for money in the streets.";
+                return "1. Ask for money in the streets.   ";
 
             case LIGHT_PROGRAMMING:
-                return "2. Do some light programming.";
+                return "2. Do some light programming.      ";
 
             case WORKDAY:
-                return "3. Normal workday.";
+                return "3. Normal workday.                ";
 
             case OVERTIME:
                 return "4. Work overtime.";

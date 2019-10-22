@@ -2,13 +2,12 @@ package org.academiadecodigo.stringteasers.programmators.game.character.actions;
 
 public enum HungerAction {
 
-    APPLE(3, 0, 5, 2),
+    APPLE(3, 0, 5, -2),
     TRASH(5, 0, -10, 0),
-    JUNKFOOD(10, 0, -5, 5),
-    SALAD(8, 0, 10, 7),
-    RESTAURANT(15, 0, 5, 15),
-    COFFEE(0, 5, -4, 3),
-    SLEEPPILL(0, 15, -10, 20);
+    JUNKFOOD(10, 0, -5, -5),
+    RESTAURANT(15, 0, 5, -15),
+    COFFEE(0, 5, -4, -3);
+
 
 
     private int eat;
@@ -55,17 +54,13 @@ public enum HungerAction {
             case JUNKFOOD:
                 return "3. Go out to eat at a junk food outlet";
 
-            case SALAD:
-                return "4. Eat a salad.";
-
             case RESTAURANT:
-                return "5. Go out to eat at a restaurant.";
-
-            case COFFEE:
-                return "6. Drink a cup of coffee.";
+                return "4. Go out to eat at a restaurant.";
 
             default:
-                return "7. Take a sleeping pill.";
+                return "5. Drink a cup of coffee.";
+
+
 
         }
 
