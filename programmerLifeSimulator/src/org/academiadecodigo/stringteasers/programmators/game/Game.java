@@ -89,6 +89,7 @@ public class Game implements KeyboardHandler {
             keyboardEvents[i] = new KeyboardEvent();
             keyboardEvents[i].setKey(keys[i]);
             keyboardEvents[i].setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            key.addEventListener(keyboardEvents[i]);
 
         }
 
